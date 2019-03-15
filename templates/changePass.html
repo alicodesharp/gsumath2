@@ -1,0 +1,31 @@
+{% extends 'giris_yapan_kullanici_karsilama.html' %}
+{% block title %} Change your password {% endblock %}
+{% block footer %} {% endblock %}
+
+{% block icerik %}
+<div class="container border">
+      <div class="py-5">
+        <h2>Change password</h2>
+          <hr>
+      </div>
+        <div class="container border text-center">
+        <br />
+            <form method="post">
+                {% csrf_token %}
+                <label for="{{ form.new_password.id_for_label }}" class="sr-only-focusable"></label>
+                <input id="{{ form.new_password.id_for_label }}" type="password" name="{{ form.new_password.html_name }}" class="form-control" placeholder="New password" required autofocus>
+                <br/>
+                <label for="{{ form.new_password_again.id_for_label }}" class="sr-only-focusable"></label>
+                <input id="{{ form.new_password_again.id_for_label }}" type="password" name="{{ form.new_password_again.html_name }}" class="form-control" placeholder="New password again" required>
+                <br/>
+                <br/>
+                {% if errormsg %}<p class=" alert-danger small">{{ errormsg }}</p>{% endif %}
+                <br/>
+                <input class="btn btn-primary btn-outline-primary" type="submit" value="Change!">
+                <br/>
+                <br/>
+            </form>
+        </div>
+        <br />
+</div>
+{% endblock %}

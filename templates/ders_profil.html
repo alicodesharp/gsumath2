@@ -1,0 +1,46 @@
+{% extends 'karsilama.html' %}
+{% load static %}
+{% block backgroundimg %}
+{% endblock %}
+{% block navbg %}bg-dark {% endblock %}
+{% block navbadge %}badge-dark{% endblock %}
+{% block navbadge2 %}text-light{% endblock %}
+{% block navbadge3 %}text-light{% endblock %}
+{% block navbadge4 %}text-light{% endblock %}
+
+
+
+    {% block title %} {{ders_adi}} {% endblock %}
+    {% block css %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+    {% endblock %}
+{% block icerik %}
+    <div class="container border">
+      <div class="py-5 text-left">
+          <h2>{{ ders }}</h2>
+        <p class="lead">{{ders.ders_text}}</p>
+      </div>
+        <p><a href="/follow/{{ders_id}}" class="{% if ders in user.user.follows.all %} btn-danger {% else %} btn-danger {% endif %} btn"> {% if ders in user.user.follows.all %} Stop following course {% else %} Follow course {% endif %}</a>
+            <a href="/courses_list/" class="btn-warning btn">Look at all courses list.</a>
+            <a href="/all_flow/" class="btn-warning btn">See all courses flow.</a>
+        <a href="/port/" class="btn-warning btn">Select a course flow.</a>
+        </p>
+        <div class="container border">
+          <div class="row border">
+            <div class="col border">Course posts total</div>
+            <div class="col border">{{count}}</div>
+            <div class="w-100"></div>
+            <div class="col border">Course ID</div>
+            <div class="col border">{{ders.derskodu}}</div>
+            <div class="w-100"></div>
+            <div class="col border">Course Type</div>
+            <div class="col border">{{ ders_turu }}</div>
+            <div class="w-100"></div>
+            <div class="col border">Course Semester</div>
+            <div class="col border">{{ders.yariyil}}</div>
+          </div>
+        </div>
+        <br>
+    </div>
+{% endblock %}

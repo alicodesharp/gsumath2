@@ -1,0 +1,60 @@
+{% extends 'giris_yapan_kullanici_karsilama.html' %}
+{% load static %}
+{% block backgroundimg %}
+    background: url('/static/images/valley2.jpg') no-repeat center center fixed;
+{% endblock %}
+{% block css %}
+    <link href="{% static 'css/mybootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+    <link href="{% static 'css/akis.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ek+Mukta:300,400,600|Open+Sans:400,800" rel="stylesheet">
+{% endblock %}
+{% block icerik %}
+
+
+<div>
+
+    <br>
+    <div>
+    <main>
+        <h1 class="auto text-dark text-center" style="font-size: 20px;font-family: 'Ek Mukta';">
+            <b>
+                Welcome <span class="text-capitalize">{{user.first_name}} {{user.last_name}}</span>,
+            get in to the flow by selecting course and professor.
+            </b>
+        </h1>
+
+    </main>
+
+    <br>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group text-center">
+            <select id="{{ form.ders.id_for_label }}" style="font-family: 'Ek Mukta';" name="{{ form.ders.html_name }}" class="form-control text-black">
+              {% for ders in dersler %}
+              <option class="bg-black text-white" value="{{ ders.id }}" style="font-family: 'Ek Mukta';">{{ ders.name }}</option>
+              {% endfor %}
+             </select>
+            <br>
+            <br>
+              <label for="{{ form.egitmen.id_for_label }}" class="sr-only">egitmen</label>
+            <select style="font-family: 'Ek Mukta';" id="{{ form.egitmen.id_for_label }}" name="{{ form.egitmen.html_name }}" class="form-control bg-white text-black">
+              {% for egitmen in egitmenler %}
+              <option style="font-family: 'Ek Mukta';" class="bg-black text-white" value="{{ egitmen.id }}">{{ egitmen.unvan_ve_isim }}</option>
+              {% endfor %}
+            </select>
+            <br>
+
+        <br>
+
+        <input type="submit" class="btn btn-primary bg-dark btn-outline-light" value="Go to the selected flow.">
+        </div>
+    </form>
+
+    </div>
+
+</div>
+{% block footer %}
+{% endblock %}
+{% endblock %}

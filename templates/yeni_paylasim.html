@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/ikon.jpg' %}">
+    <title>Yeni Paylaşım!</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+
+  </head>
+  <body lang="tr-tr" class="text-center bg-dark">
+
+    <form class="form-signin" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <a href="/"><img class="mb-4" src="{% static 'images/ikon.jpg' %}" alt="" width="72" height="72"></a>
+      <h1 class="h3 mb-3 font-weight-normal text-warning">Share something new!</h1>
+      <label for="{{ form.konu.id_for_label }}" class="sr-only-focusable"></label>
+      <input id="{{ form.konu.id_for_label }}" name="{{ form.konu.html_name }}" class="form-control" placeholder="Subject*" required autofocus>
+        <br>
+      <label for="{{ form.text.id_for_label }}" class="sr-only">text</label>
+        <textarea id="{{ form.text.id_for_label }}" name="{{ form.text.html_name }}" class="form-control" placeholder="Text*" required></textarea>
+        <br>
+
+      <label for="{{ form.ders.id_for_label }}" class="sr-only">ders</label>
+      <select id="{{ form.ders.id_for_label }}" name="{{ form.ders.html_name }}" class="form-control">
+          {% for ders in dersler %}
+          <option value="{{ ders.id }}" >{{ ders.name }}</option>
+          {% endfor %}
+      </select>
+        <br>
+      <label for="{{ form.egitmen.id_for_label }}" class="sr-only">egitmen</label>
+      <select id="{{ form.egitmen.id_for_label }}" name="{{ form.egitmen.html_name }}" class="form-control">
+          {% for egitmen in egitmenler %}
+          <option value="{{ egitmen.id }}">{{ egitmen.unvan_ve_isim }}</option>
+          {% endfor %}
+      </select>
+        <br>
+      <label for="{{ form.dosya.id_for_label }}" class="sr-only">File</label>
+      <input type="file" id="{{ form.dosya.id_for_label }}" name="{{ form.dosya.html_name }}" style="position: relative; color: yellow;">
+        <br>
+
+      <input class="btn btn-lg btn-primary bg-warning btn-outline-danger btn-block" type="submit" value="Share!">
+      <p class="mt-5 mb-3 text-warning">@ 2018-2019 GSU</p>
+      <p class="text-light"><a class="text-warning" href="/myflow/">&real;eturn to my flow</a> | <a class="text-warning" href="/port/">Back to course selection page</a> | <a class="text-warning" href="/anasayfa/">Back to all courses flow.</a> | <a class="text-warning" href="/dersler/">View all courses list.</a></p>
+    </form>
+
+
+  </body>
+</html>
+
+<!--
+konu = models.CharField(max_length=50)
+    text = models.TextField()
+    dosya = models.FileField(upload_to="files", null=True, blank=True)
+    tarih = models.DateTimeField(auto_now_add=True)
+    ders = models.ForeignKey(Ders, on_delete=models.CASCADE)
+egitmen = models.ForeignKey(Egitmen, on_delete=models.CASCADE)
+-->

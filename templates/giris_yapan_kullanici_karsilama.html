@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Galatasaray Üniversitesi matematik bölümü not paylaşım platformu">
+    <meta name="author" content="Muhammet Ali Öztürk">
+    <link rel="icon" href="{% static 'images/valleyikon.jpg' %}">
+    <title>{% block title %}gsu|math Valley{% endblock %}</title>
+    {% block css %}
+    <link href="{% static 'css/mybootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+    <link href="{% static 'css/akis.css' %}" rel="stylesheet">
+    {% endblock %}
+  </head>
+  <body class="bg-light">
+    <div class="cover-container d-flex mx-auto flex-column">
+
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-dark border-bottom shadow-sm">
+        {% if user.is_authenticated %}
+      <h5 class="my-0 mr-md-auto font-weight-normal text-light">gsu|math</h5>
+        {% else %}
+      <h5 class="text-light my-0 mr-md-auto font-weight-normal">gsu|math</h5>
+        {% endif %}
+      <nav class="text-success my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-light" href="/about_gsumath/">About gsumath</a>
+        {% if user.is_authenticated %}
+        <a class="p-2 text-light" href="/send_recommendation/">Recommend for improvements</a>
+        <a class="p-2 text-light dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Options</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/change_password/">Change password</a>
+              <a class="dropdown-item" href="/user_profile/">Account settings</a>
+              <a class="dropdown-item" href="/cikis/">Logout</a>
+            </div>
+        {% endif %}
+
+
+      </nav>
+        {% if not user.is_authenticated %}
+      <a class="btn btn-outline-success" href="/giris/">Sign in</a>
+        {% else %}
+      <a class="btn btn-outline-danger" href="/cikis/">Sign out</a>
+        {% endif %}
+    </div>
+      <div class="cover-container border-top d-flex mx-auto flex-column">
+      {% if user.is_authenticated %}
+    <div class="nav-scroller bg-white shadow-sm fixed-top">
+      <nav class="nav nav-underline">
+        <a class="nav-link active text-info" href="/myflow/">My &fnof;low</a>
+        <a class="nav-link active" href="/port/">Look at a specific course flow</a>
+        <a class="nav-link active" href="/all_flow/">All courses flow</a>
+        <a class="nav-link active border-right border-left border-danger badge-warning" href="/yeni_paylasim/">Share something new!</a>
+        <a class="nav-link active" href="/courses_list/">List of all courses followable.</a>
+        <a class="nav-link text-left active" href="/announcements/">
+          Announcements
+          <span class="badge badge-pill bg-warning align-text-bottom">{{ duyurucount }}</span>
+        </a>
+      </nav>
+    </div>
+      {% endif %}
+
+      {% block icerik %}
+
+      {% endblock %}
+
+      {% block footer %}
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Tasarım by <a href="https://www.linkedin.com/in/muhammed-ali-%C3%B6zt%C3%BCrk/">@m.aliozturk</a>.</p>
+        </div>
+      </footer>
+      {% endblock %}
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'js/jquery-slim.min.js' %}"><\/script>')</script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/holder.min.js' %}"></script>
+    <script src="{% static 'js/offcanvas.js' %}"></script>
+  </body>
+</html>

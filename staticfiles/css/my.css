@@ -1,0 +1,50 @@
+.worldwide{
+color: #dc3545;
+}
+.başlık{
+color: #263238;
+}
+.linkler{
+color:  yellow;
+}
+
+.biggertext{
+    font-size: 20px;
+}
+
+.gsulogobg{
+    background-image: url('{% static 'images/logo.jpg' %}');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bordered{
+    border-top: 1px solid #263238;
+    border-left: 1px solid #263238;
+    border-right: 1px solid #263238;
+    border-bottom: 1px solid #263238;
+    margin-bottom: 10%;
+}
+.btntext{
+    font-family: calibri;
+}
+.dark1{
+    background-color: #fafafa;
+}
+.agauche{
+    text-align: left;
+}
+.bitisik{
+    margin-top: 0.1em; margin-bottom: 0em;
+}
+.daha-kucuk{
+    font-size: 13px;
+}
+.paylasim-text{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 14px;
+}
+.paylasim-text-title{
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 1.2em;
+
+}

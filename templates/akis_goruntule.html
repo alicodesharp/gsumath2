@@ -1,0 +1,47 @@
+{% extends 'giris_yapan_kullanici_karsilama.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static 'css/mybootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/offcanvas.css' %}" rel="stylesheet">
+    <link href="{% static 'css/akis.css' %}" rel="stylesheet">
+{% endblock %}
+{% block icerik %}
+
+<main role="main" class="container">
+
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-dark rounded shadow-sm" style="background-image: url('{% static 'images/math.jpg' %}');">
+        <div class="lh-100">
+          <h6 class="mb-0 text-white lh-100">{{ders}}</h6>
+          <small>{{ egitmen.unvan_ve_isim }}</small>
+        </div>
+      </div>
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">Latest publications</h6>
+        {% for gonderi in gonderiler %}
+        <div class="media text-muted pt-3">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray break-text">
+            <strong class="d-block text-gray-dark">@{{gonderi.yazar}} | {{gonderi.konu}}</strong>
+            {{ gonderi.text }}
+              <br />
+              <br />
+            {{ gonderi.tarih }} | {{ gonderi.yazar.first_name }} {{ gonderi.yazar.last_name }}
+              <br />
+            {% if gonderi.dosya %}
+            File : <a href="/uploads/{{gonderi.dosya}}" class="başlık">{{ gonderi.dosya }}</a>
+            {% endif %}
+          </p>
+        </div>
+        {% endfor %}
+        <small class="d-block text-right mt-3">
+          <a href="#">All updates</a>
+        </small>
+      </div>
+</main>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,36 @@
+{% extends 'giris_yapan_kullanici_karsilama.html' %}
+{% load static %}
+{% block icerik %}
+    <div class="container border">
+      <div class="py-5">
+
+        <h2>Account Information</h2>
+          <hr>
+      </div>
+        <div class="container border">
+          <div class="row border">
+            <div class="col border text-dark font-weight-bold">Name </div>
+            <div class="col border text-secondary text-capitalize">{{user.first_name}} {{user.last_name}}</div>
+
+            <div class="w-100"></div>
+            <div class="col border text-dark font-weight-bold">Username</div>
+            <div class="col border text-secondary">{{user.username}}</div>
+            <div class="w-100"></div>
+            <div class="col border text-dark font-weight-bold">School number</div>
+            <div class="col border text-secondary">{{user.user.okul_no}}</div>
+            <div class="w-100"></div>
+            <div class="col border text-dark font-weight-bold">E-mail adress</div>
+            <div class="col border text-secondary">{{user.email}}</div>
+            <div class="w-100"></div>
+            <div class="col border text-dark font-weight-bold">Password | <a href="/change_password/">Change your password</a> </div>
+            <div class="col border text-dark"> ******* </div>
+            <div class="w-100"></div>
+            <div class="col border text-dark font-weight-bold">Followed courses | <a href="/courses_list/">Edit</a></div>
+            <div class="col border text-dark">{% for course in follows %} {{course.name}}, {% endfor %}</div>
+          </div>
+        </div>
+        <br />
+    </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
